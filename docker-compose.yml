@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  api-usuario:
+    build:
+      context: './config/api'
+      dockerfile: 'Dockerfile'
+    working_dir: /home/node/app
+    environment:
+      - WATCHED_FILES=package.json
+      - MY_PORT_HTTP=${MS_PORT_HTTP}
+    ports:
+      - '10001:${MS_PORT_HTTP}'
+      - '11001:${MS_PORT_TCP}'
+    volumes:
+      - './src/servicios/api-usuario:/home/node/app'
